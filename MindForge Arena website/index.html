@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindForge Arena - Test & Sharpen Your Intelligence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #fff, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #f093fb;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f093fb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fff, #f093fb, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .about {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #fff, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about p {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-card i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .play-store-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00C853, #00E676);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 200, 83, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+        }
+
+        .play-store-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 200, 83, 0.6);
+        }
+
+        .play-store-button i {
+            font-size: 28px;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f093fb;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .about h2 {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">🧠 MindForge Arena</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="specs.html">Specs</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Test & Sharpen Your Intelligence</h1>
+            <p>The ultimate IQ training and competitive intelligence platform</p>
+            <a href="https://play.google.com/store/apps/details?id=com.devstudio.iqpro&pli=1" class="play-store-button" target="_blank">
+                <i class="fab fa-google-play"></i>
+                Download on Play Store
+            </a>
+        </section>
+
+        <section class="about" id="about">
+            <h2>About MindForge Arena</h2>
+            <p>
+                MindForge Arena is the ultimate IQ training and competitive intelligence platform designed to challenge your cognitive abilities and measure your true mental potential. Whether you're preparing for aptitude tests, seeking self-improvement, or competing with friends, our comprehensive suite of brain training exercises will push your limits.
+            </p>
+            <p style="margin-top: 20px;">
+                With over 100+ progressively challenging quests, real-time intelligence battles, and a sophisticated ranking system, MindForge Arena offers a complete cognitive development experience. Track your progress, compete globally, and discover the true power of your mind.
+            </p>
+        </section>
+
+        <section class="features" id="features">
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>Comprehensive IQ Testing</h3>
+                <p>Professional-grade IQ tests across multiple cognitive domains including abstract reasoning, spatial awareness, memory recall, vocabulary, and more.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-tasks"></i>
+                <h3>Quest System</h3>
+                <p>Embark on a journey through 100+ progressively challenging quests that target specific cognitive skills with adaptive difficulty.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-swords"></i>
+                <h3>Battle Arena</h3>
+                <p>Compete head-to-head with other players in real-time intelligence battles and climb the competitive leaderboard.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Global Leaderboard</h3>
+                <p>See how you stack up against the best minds globally with our transparent and fair ranking system.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Detailed Analytics</h3>
+                <p>Monitor your cognitive development with in-depth performance analytics and track your IQ score trends.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Personalized Training</h3>
+                <p>The app adapts to your skill level, providing questions that challenge you appropriately for optimal growth.</p>
+            </div>
+        </section>
+
+        <section class="hero" style="text-align: center;">
+            <h2>Ready to Challenge Your Mind?</h2>
+            <p style="margin-bottom: 30px;">Download MindForge Arena today and begin your journey to cognitive excellence.</p>
+            <a href="https://play.google.com/store/apps/details?id=com.devstudio.iqpro&pli=1" class="play-store-button" target="_blank">
+                <i class="fab fa-google-play"></i>
+                Get it on Google Play
+            </a>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-and-conditions.html">Terms & Conditions</a>
+                <a href="contact-us.html">Contact Us</a>
+                <a href="specs.html">Specs</a>
+            </div>
+            <p style="text-align: center; margin-top: 30px; opacity: 0.7;">© 2024 MindForge Arena. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
