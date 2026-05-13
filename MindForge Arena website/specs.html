@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Specifications - MindForge Arena</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo-brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        .logo-brand span {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #fff, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f093fb;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            border-radius: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #fff, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #f093fb;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .spec-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .spec-card i {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .spec-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .spec-card p {
+            font-size: 16px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-item:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: bold;
+            color: #f093fb;
+        }
+
+        .spec-value {
+            opacity: 0.9;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #f093fb;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo-brand"><img src="assets/logo.png" alt="MindForge Arena app icon" width="38" height="38"><span>MindForge Arena</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
+                <li><a href="terms-and-conditions.html">Terms</a></li>
+                <li><a href="contact-us.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="content">
+            <h1>App Specifications</h1>
+            <p>Technical details and requirements for MindForge Arena</p>
+
+            <h2>General Information</h2>
+            <div class="spec-card">
+                <div class="spec-item">
+                    <span class="spec-label">App Name</span>
+                    <span class="spec-value">MindForge Arena</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Package ID</span>
+                    <span class="spec-value">com.devstudio.iqpro</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Version</span>
+                    <span class="spec-value">2.0.0</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Category</span>
+                    <span class="spec-value">Education / Puzzle</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Platform</span>
+                    <span class="spec-value">Android</span>
+                </div>
+            </div>
+
+            <h2>System Requirements</h2>
+            <div class="spec-card">
+                <div class="spec-item">
+                    <span class="spec-label">Minimum Android</span>
+                    <span class="spec-value">Android 7.0 (Nougat)</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Target Android</span>
+                    <span class="spec-value">Android 14</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Architecture</span>
+                    <span class="spec-value">ARM64-v8a, armeabi-v7a</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Screen Size</span>
+                    <span class="spec-value">Small, Normal, Large, X-Large</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Required Storage</span>
+                    <span class="spec-value">~50 MB</span>
+                </div>
+            </div>
+
+            <h2>Features</h2>
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>IQ Testing</h3>
+                    <p>12 cognitive categories with professional-grade assessments</p>
+                </div>
+                <div class="spec-card">
+                    <i class="fas fa-tasks"></i>
+                    <h3>100+ Quests</h3>
+                    <p>Progressively challenging quests with adaptive difficulty</p>
+                </div>
+                <div class="spec-card">
+                    <i class="fas fa-swords"></i>
+                    <h3>Battle Arena</h3>
+                    <p>Real-time multiplayer intelligence battles</p>
+                </div>
+                <div class="spec-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Leaderboard</h3>
+                    <p>Global ranking with sophisticated scoring algorithm</p>
+                </div>
+                <div class="spec-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Analytics</h3>
+                    <p>Detailed performance tracking and progress reports</p>
+                </div>
+                <div class="spec-card">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Adaptive Learning</h3>
+                    <p>Personalized difficulty adjustment based on performance</p>
+                </div>
+            </div>
+
+            <h2>Test Categories</h2>
+            <div class="spec-card">
+                <p style="margin-bottom: 15px;">MindForge Arena includes the following cognitive assessment categories:</p>
+                <ul style="margin-left: 20px; opacity: 0.9;">
+                    <li>Abstract Reasoning</li>
+                    <li>Spatial Reasoning</li>
+                    <li>Memory Training</li>
+                    <li>Vocabulary Enhancement</li>
+                    <li>Pattern Recognition</li>
+                    <li>Coding & Decoding</li>
+                    <li>Verbal Analogies</li>
+                    <li>Mathematical Problems</li>
+                    <li>Number Series</li>
+                    <li>Logical Deduction</li>
+                    <li>Psychometric Assessment</li>
+                    <li>Situational Judgment</li>
+                </ul>
+            </div>
+
+            <h2>Permissions</h2>
+            <div class="spec-card">
+                <div class="spec-item">
+                    <span class="spec-label">Internet</span>
+                    <span class="spec-value">Required for online features</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Network State</span>
+                    <span class="spec-value">Required for connectivity checks</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Vibration</span>
+                    <span class="spec-value">Optional for haptic feedback</span>
+                </div>
+            </div>
+
+            <h2>Privacy & Security</h2>
+            <div class="spec-card">
+                <div class="spec-item">
+                    <span class="spec-label">Data Encryption</span>
+                    <span class="spec-value">Yes (SSL/TLS)</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Account Security</span>
+                    <span class="spec-value">Firebase Authentication</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Ad Compliance</span>
+                    <span class="spec-value">Google AdMob</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Privacy Policy</span>
+                    <span class="spec-value">Available in-app</span>
+                </div>
+            </div>
+
+            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-and-conditions.html">Terms & Conditions</a>
+                <a href="contact-us.html">Contact Us</a>
+                <a href="specs.html">Specs</a>
+            </div>
+            <p style="text-align: center; margin-top: 30px; opacity: 0.7;">© <span class="js-copyright-year"></span> MindForge Arena. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll(".js-copyright-year").forEach(function (el) {
+            el.textContent = String(new Date().getFullYear());
+        });
+    </script>
+</body>
+</html>
